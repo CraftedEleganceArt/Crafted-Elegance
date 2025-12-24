@@ -1,6 +1,2 @@
-flask
-
-flask-sqlalchemy
-
+Flask
 gunicorn
-
