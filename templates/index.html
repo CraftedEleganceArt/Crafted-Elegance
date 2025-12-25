@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crafted Elegance - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h3 style="padding-left: 25px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Shop By Category</h3>
+        <a href="/">All Products</a>
+        <a href="/?cat=Lippan Art">Lippan Art</a>
+        <a href="/?cat=Macrame">Macrame</a>
+    </div>
+
+    <div class="nav-bar">
+        <div class="menu-icon" onclick="openNav()">
+            <span>&#9776; All</span>
+        </div>
+    </div>
+
+    <header>
+        <h1>Crafted Elegance</h1>
+        <p>तुमच्या घरासाठी सुंदर आणि हाताने बनवलेली कला</p>
+    </header>
+
+    <div style="text-align: center; margin: 20px;">
+        <form action="/" method="GET" style="display: inline-block; width: 80%; max-width: 500px;">
+            <input type="text" name="search" placeholder="Search for products (e.g. Lippan Art)..." 
+                   style="width: 70%; padding: 10px; border-radius: 20px; border: 1px solid #ddd; outline: none;">
+            <button type="submit" style="padding: 10px 20px; border-radius: 20px; border: none; background-color: #800000; color: white; cursor: pointer;">
+                Search
+            </button>
+        </form>
+    </div>
+
+    <div class="product-container">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="/product/{{ product.id }}" style="text-decoration: none; color: inherit;">
+                <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <span class="price">₹{{ product.price }}</span>
+                    <span class="free-delivery">Free Delivery</span>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+            <p>संपर्क: +91 XXXXXXXXXX</p>
+            <p>ईमेल: info@craftedelegance.com</p>
+            <div class="socials">
+                <a href="#">Instagram</a> | 
+                <a href="#">Facebook</a>
+            </div>
+            <p class="copyright">&copy; 2025 Crafted Elegance. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+    </script>
